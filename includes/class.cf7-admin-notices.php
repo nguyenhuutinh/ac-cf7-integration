@@ -31,11 +31,11 @@ class AC_Admin_notices{
         /**
          * display notices hook
          */
-        add_action( 'admin_notices' , array( $this , 'qs_admin_notices' ) );
+        add_action( 'admin_notices' , array( $this , 'ac_admin_notices' ) );
         /**
          * catch dismiss notice action and add it to the dismissed notices array
          */
-        add_action( 'wp_ajax_qs_cf7_api_admin_dismiss_notices' , array( $this , 'qs_admin_dismiss_notices' ) );
+        add_action( 'wp_ajax_ac_cf7_integration_admin_dismiss_notices' , array( $this , 'ac_cf7_integration_admin_dismiss_notices' ) );
         /**
          * enqueue admin scripts and styles
          */
@@ -47,20 +47,20 @@ class AC_Admin_notices{
      */
     public function load_admin_scripts(){
 
-        wp_register_style( 'qs-cf7-api-admin-notices-css', QS_CF7_API_ADMIN_CSS_URL . 'admin-notices-style.css' , false , '1.0.0' );
+        wp_register_style( 'ac_cf7_integration-admin-notices-css', AC_CF7_INTEGRATION_ADMIN_CSS_URL . 'admin-notices-style.css' , false , '1.0.0' );
 
-        wp_enqueue_style( 'qs-cf7-api-admin-notices-css' );
+        wp_enqueue_style( 'ac_cf7_integration-admin-notices-css' );
 
-        wp_register_script( 'qs-cf7-api-admin-notices-script', QS_CF7_API_ADMIN_JS_URL . 'admin-notices-script.js' , array( 'jquery' ) , '1.0.0' , true );
+        wp_register_script( 'ac_cf7_integration-admin-notices-script', AC_CF7_INTEGRATION_ADMIN_JS_URL . 'admin-notices-script.js' , array( 'jquery' ) , '1.0.0' , true );
 
-        wp_enqueue_script( 'qs-cf7-api-admin-notices-script' );
+        wp_enqueue_script( 'ac_cf7_integration-admin-notices-script' );
 
     }
     /**
      * dismiss notice and save it to the plugin options
      * @return [type] [description]
      */
-    public function qs_admin_dismiss_notices(){
+    public function ac_cf7_integration_admin_dismiss_notices(){
         $id = isset( $_POST['id'] ) ? sanitize_text_field( $_POST['id'] ) : '';
 
         if( $id ){
@@ -77,7 +77,7 @@ class AC_Admin_notices{
      */
     private function get_plugin_options(){
 
-        $this->notices_options = apply_filters( 'get_plugin_options' , get_option( 'qs_cf7_api_notices_options' ) );
+        $this->notices_options = apply_filters( 'get_plugin_options' , get_option( 'ac_cf7_integration_notices_options' ) );
 
     }
 
@@ -87,14 +87,14 @@ class AC_Admin_notices{
      */
     private function update_plugin_options(){
 
-        update_option( 'qs_cf7_api_notices_options' , $this->notices_options );
+        update_option( 'ac_cf7_integration_notices_options' , $this->notices_options );
 
     }
     /**
      * display the notices that resides in the notices collection
      * @return [type] [description]
      */
-    public function qs_admin_notices(){
+    public function ac_admin_notices(){
 
         if( $this->notices ){
             foreach( $this->notices as $admin_notice ){
@@ -109,7 +109,7 @@ class AC_Admin_notices{
                 $id = $admin_notice['id'];
                 if( ! $admin_notice['dismissable_forever'] || (! isset( $this->notices_options['dismiss_notices'][$id] ) || ! $this->notices_options['dismiss_notices'][$id]) ){
                     if( $admin_notice['dismissable_forever'] ){
-                        $classes[] = 'qs-cf7-api-dismiss-notice-forever';
+                        $classes[] = 'ac_cf7_integration-dismiss-notice-forever';
                     }
                     echo "<div id='{$admin_notice['id']}' class='".implode( ' ' , $classes )."'>
                          <p>{$admin_notice['notice']}</p>

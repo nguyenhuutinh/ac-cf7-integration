@@ -32,7 +32,7 @@ function check_input_type(){
 }
 
 function qs_cf7_dismiss_admin_note(){
-    jQuery(".qs-cf7-api-dismiss-notice-forever").click(function(){
+    jQuery(".ac-cf7-integration-dismiss-notice-forever").click(function(){
 
         var id = jQuery( this ).attr( 'id' );
 
@@ -40,7 +40,7 @@ function qs_cf7_dismiss_admin_note(){
             type: "post",
             url: ajaxurl,
             data: {
-                action: 'qs_cf7_api_admin_dismiss_notices',
+                action: 'ac_cf7_integration_admin_dismiss_notices',
                 id : id
             },
 

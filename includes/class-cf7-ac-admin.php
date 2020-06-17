@@ -6,7 +6,7 @@ if ( ! defined( 'WPINC' ) ) {
   die;
 }
 
-class AC_CF7_api_admin{
+class AC_CF7_integration_admin{
   private $contact_id;
 
   /**

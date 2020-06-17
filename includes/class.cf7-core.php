@@ -6,7 +6,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-class QS_CF7_atp_integration{
+class AC_CF7_atp_integration{
 
     /**
 	 * The plugin identifier.
@@ -51,16 +51,16 @@ class QS_CF7_atp_integration{
 	 * @since    1.0.0
 	 */
      public function __construct() {
-         $this->plugin_name = 'wc-cf7-api-form';
+         $this->plugin_name = 'ac-cf7-integration-form';
          
 
          $this->load_dependencies();
 
          /**
           * Create an instance of the admin class
-          * @var QS_CF7_api_admin
+          * @var AC_CF7_integration_admin
           */
-         $this->admin = new QS_CF7_api_admin();
+         $this->admin = new AC_CF7_integration_admin();
          $this->admin->plugin_name = $this->plugin_name;
 
          /**
@@ -81,15 +81,15 @@ class QS_CF7_atp_integration{
          /**
  		 * General global plugin functions
  	    */
-         require_once QS_CF7_API_INCLUDES_PATH . 'class.cf7-helpers.php';
+         require_once AC_CF7_INTEGRATION_INCLUDES_PATH . 'class.cf7-helpers.php';
          /**
         * admin notices class
         */
-         require_once QS_CF7_API_INCLUDES_PATH . 'class.qs-admin-notices.php';
+         require_once AC_CF7_INTEGRATION_INCLUDES_PATH . 'class.cf7-admin-notices.php';
          /**
         * admin notices clclass
         */
-         require_once QS_CF7_API_INCLUDES_PATH . 'class-cf7-api-admin.php';
+         require_once AC_CF7_INTEGRATION_INCLUDES_PATH . 'class-cf7-ac-admin.php';
      }
      /**
       * Get the current plugin instance
